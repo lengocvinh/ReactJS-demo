@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Nav from "./views/Nav";
+import Covid from "./views/Covid";
+import Countdown from "./views/Countdown";
+import Blog from "./views/Blog";
+import DetailBlog from "./views/DetailBlog";
+import AddNewBlog from "./views/AddNewBlog";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Nav />
+        <Switch>
+          <Route path="/" exact>
+            <Covid />
+          </Route>
+          <Route path="/Timer">
+            <Countdown />
+          </Route>
+          <Route path="/blog" exact>
+            <Blog />
+          </Route>
+          <Route path="/blog/:id">
+            <DetailBlog />
+          </Route>
+          <Route path="/add-new-blog">
+            <AddNewBlog />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
